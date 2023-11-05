@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-const greeting = () => console.log('Welcome to my application');
+import userName from '../src/cli.js';
 
-greeting()
+console.log('Welcome to my application');
+
+userName();
