@@ -11,9 +11,12 @@
   "license": "ISC",
   "bin": {
     "brain-games": "bin/brain-games.js",
-    "brain-even": "bin/brain-even.js"
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js"
   },
   "dependencies": {
+    "@hexlet/pairs": "^1.1.1",
+    "lodash": "^4.17.21",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
