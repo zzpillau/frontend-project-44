@@ -4,14 +4,16 @@ import {
   cons, car, cdr,
 } from '@hexlet/pairs';
 
-
 // tasks
 
 export const evenTask = 'Answer "yes" if the number is even, otherwise answer "no".';
 export const calcTask = 'What is the result of the expression?';
+export const gcdTask = 'Find the greatest common divisor of given numbers.';
+
+// common
 
 const round = 3;
-const maxRandomNum = 11;
+const maxRandomNum = 35;
 const randomNum = (maxNum) => Math.floor(Math.random() * maxNum);
 
 let yourName;
@@ -47,7 +49,7 @@ const calcVariants = () => {
   for (let i = 0; i < round; i += 1) {
     const operators = ['+', '-', '*'];
     const operator = operators[randomNum(operators.length)];
-    const pair = cons(randomNum(10), randomNum(10));
+    const pair = cons(randomNum(maxRandomNum), randomNum(maxRandomNum));
     const calcQuest = `${car(pair)} ${operator} ${cdr(pair)}`; // это вопрос calc 1 раунд, его запушить
     calcQuestion.push(calcQuest);
     calcCorrectAnswer.push(eval(calcQuestion[i]).toString());
@@ -56,6 +58,36 @@ const calcVariants = () => {
 };
 
 export const calcQAPair = calcVariants();
+
+// gcd
+
+const gcd = (a, b) => {
+  let i = a;
+  let j = b;
+  while (i > 0 && j > 0) {
+    if (i >= j) {
+      i = i % j;
+    } else {
+      j = j % i;
+    }
+  }
+  return Math.max(i, j);
+};
+
+const gcdVariants = () => {
+  const gcdQuestion = [];
+  const gcdCorrectAnswer = [];
+  for (let i = 0; i < round; i += 1) {
+    const pair = cons(randomNum(maxRandomNum), randomNum(maxRandomNum));
+    const gcdAnsw = gcd(car(pair), cdr(pair));
+    const gcdQuest = `${car(pair)} ${cdr(pair)}`;
+    gcdQuestion.push(gcdQuest);
+    gcdCorrectAnswer.push(gcdAnsw.toString());
+  }
+  return _.zip(gcdQuestion, gcdCorrectAnswer);
+};
+
+export const gcdQAPair = gcdVariants();
 
 // game logic
 
@@ -72,8 +104,8 @@ export const game = (task, question) => {
     if (!compare) {
       console.log(`${wrongAnswer}\nLet's try again, ${yourName}!`);
       return;
-    };
+    }
     console.log('Correct!');
-  };
+  }
   console.log(`Congratulations, ${yourName}`);
 };
