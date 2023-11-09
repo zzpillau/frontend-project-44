@@ -1,5 +1,5 @@
 import {
-    calcTask, game, calcQAPair,
+  calcTask, game, calcQAPair,
 } from '../src/index.js';
 
 export default () => {

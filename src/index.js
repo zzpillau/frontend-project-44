@@ -9,6 +9,7 @@ import {
 export const evenTask = 'Answer "yes" if the number is even, otherwise answer "no".';
 export const calcTask = 'What is the result of the expression?';
 export const gcdTask = 'Find the greatest common divisor of given numbers.';
+export const progressionTask = 'What number is missing in the progression?';
 
 // common
 
@@ -66,9 +67,9 @@ const gcd = (a, b) => {
   let j = b;
   while (i > 0 && j > 0) {
     if (i >= j) {
-      i = i % j;
+      i %= j;
     } else {
-      j = j % i;
+      j %= i;
     }
   }
   return Math.max(i, j);
@@ -88,6 +89,43 @@ const gcdVariants = () => {
 };
 
 export const gcdQAPair = gcdVariants();
+
+// progression
+
+const progress = () => {
+  const arr = [];
+  let start = randomNum(7);
+  const add = randomNum(7);
+  arr.push(start);
+  for (let i = 0; i < 9; i += 1) {
+    const sum = start + add;
+    arr.push(sum);
+    start = sum;
+  }
+  return arr;
+};
+
+let item;
+
+const replaceWithDots = (prog) => {
+  const myProg = prog;
+  const index = randomNum(prog.length);
+  item = myProg[index]; //
+  myProg[index] = '..';
+  return myProg;
+};
+
+const progressionVariants = () => {
+  const progressionQuestion = [];
+  const progressionCorrectAnswer = [];
+  for (let i = 0; i < round; i += 1) {
+    progressionQuestion.push(replaceWithDots(progress()).join(' '));
+    progressionCorrectAnswer.push(item.toString());
+  }
+  return _.zip(progressionQuestion, progressionCorrectAnswer);
+};
+
+export const progressionQAPair = progressionVariants();
 
 // game logic
 
