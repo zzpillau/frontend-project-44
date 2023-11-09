@@ -1,10 +1,6 @@
 import _ from 'lodash';
-import readlineSync from 'readline-sync';
 import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
-import {
-  round, maxRandomNum, randomNum, game,
+  round, randomNum, game,
 } from '../src/index.js';
 
 const progressionTask = 'What number is missing in the progression?';
@@ -28,7 +24,6 @@ const progress = () => {
   myProg[index] = '..';
   return myProg.join(' ');
 };
-
 
 const progressionVariants = () => {
   const progressionQuestion = [];

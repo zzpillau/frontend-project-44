@@ -1,11 +1,7 @@
-import _ from 'lodash';
 import readlineSync from 'readline-sync';
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
 
 export const round = 3;
-export const maxRandomNum = 35;
+export const maxRandomNum = 21;
 export const randomNum = (maxNum) => Math.floor(Math.random() * maxNum);
 
 let yourName;
@@ -17,25 +13,14 @@ export const greeting = (task) => {
   console.log(task);
 };
 
-// const zipQA = (qwest, answ) => {
-//  const Question = [];
-//  const CorrectAnswer = [];
-//  for (let i = 0; i < round; i += 1) {
-//    Question.push(qwest);
-//    CorrectAnswer.push(answ);
-//  }
-//  return _.zip(Question, CorrectAnswer);
-// };
-
 // game logic
 
 export const game = (task, question) => {
   greeting(task);
-  const qaPair = question;
-  /* eslint-disable-next-line */
-  for (const [q, a] of qaPair) {
-    console.log(`Question: ${q}`);
-    const correctAnswer = a;
+  const pairQA = question;
+  for (const [quest, answ] of pairQA) { // линтер ругается на for...of!!!
+    console.log(`Question: ${quest}`);
+    const correctAnswer = answ;
     const yourAnswer = readlineSync.question('Your answer: ');
     const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
     const compare = correctAnswer === yourAnswer;
