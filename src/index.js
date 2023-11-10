@@ -30,5 +30,5 @@ export const game = (task, question) => {
     }
     console.log('Correct!');
   }
-  console.log(`Congratulations, ${yourName}`);
+  console.log(`Congratulations, ${yourName}!`);
 };
