@@ -24,6 +24,7 @@ export const game = (task, question) => {
     const yourAnswer = readlineSync.question('Your answer: ');
     const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
     const compare = correctAnswer === yourAnswer;
+    
     if (!compare) {
       console.log(`${wrongAnswer}\nLet's try again, ${yourName}!`);
       return;
