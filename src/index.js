@@ -15,21 +15,39 @@ export const greeting = (task) => {
 
 // game logic
 
+let result;
+
 export const game = (task, question) => {
-  greeting(task);
   const pairQA = question;
-  for (const [quest, answ] of pairQA) { // линтер ругается на for...of!!!
-    console.log(`Question: ${quest}`);
+
+  greeting(task);
+
+  const oneRound = (qwest, answ) => {
+    console.log(`Question: ${qwest}`);
     const correctAnswer = answ;
     const yourAnswer = readlineSync.question('Your answer: ');
     const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
     const compare = correctAnswer === yourAnswer;
-    
     if (!compare) {
       console.log(`${wrongAnswer}\nLet's try again, ${yourName}!`);
+      result = 'fail';
       return;
     }
     console.log('Correct!');
+    result = 'win';
+  };
+
+  let i = 0;
+  const j = 0;
+
+  while (i < round) {
+    oneRound(pairQA[i][j], pairQA[i][j + 1]);
+    if (result === 'fail') {
+      break;
+    }
+    i += 1;
   }
-  console.log(`Congratulations, ${yourName}!`);
+  if (result === 'win') {
+    console.log(`Congratulations, ${yourName}!`);
+  }
 };
