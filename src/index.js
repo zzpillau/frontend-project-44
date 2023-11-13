@@ -13,33 +13,28 @@ export const greeting = (task) => {
   console.log(task);
 };
 
-// game logic
-
 let result;
 
+const oneRound = (qwest, answ) => {
+  console.log(`Question: ${qwest}`);
+  const correctAnswer = answ;
+  const yourAnswer = readlineSync.question('Your answer: ');
+  const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
+  const compare = correctAnswer === yourAnswer;
+  if (!compare) {
+    console.log(`${wrongAnswer}\nLet's try again, ${yourName}!`);
+    result = 'fail';
+    return;
+  }
+  console.log('Correct!');
+  result = 'win';
+};
+
 export const game = (task, question) => {
-  const pairQA = question;
-
   greeting(task);
-
-  const oneRound = (qwest, answ) => {
-    console.log(`Question: ${qwest}`);
-    const correctAnswer = answ;
-    const yourAnswer = readlineSync.question('Your answer: ');
-    const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
-    const compare = correctAnswer === yourAnswer;
-    if (!compare) {
-      console.log(`${wrongAnswer}\nLet's try again, ${yourName}!`);
-      result = 'fail';
-      return;
-    }
-    console.log('Correct!');
-    result = 'win';
-  };
-
+  const pairQA = question;
   let i = 0;
   const j = 0;
-
   while (i < round) {
     oneRound(pairQA[i][j], pairQA[i][j + 1]);
     if (result === 'fail') {
