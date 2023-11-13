@@ -21,7 +21,7 @@ const gcd = (a, b) => {
   return Math.max(i, j);
 };
 
-const gcdVariants = () => {
+const gcdQuestionPack = () => {
   const gcdQuestion = [];
   const gcdCorrectAnswer = [];
   for (let i = 0; i < round; i += 1) {
@@ -34,7 +34,7 @@ const gcdVariants = () => {
   return _.zip(gcdQuestion, gcdCorrectAnswer);
 };
 
-const gcdQAPair = gcdVariants();
+const gcdQAPair = gcdQuestionPack();
 
 export default () => {
   game(gcdTask, gcdQAPair);

@@ -1,10 +1,22 @@
 import readlineSync from 'readline-sync';
+import _ from 'lodash';
 
 export const round = 3;
 export const maxRandomNum = 21;
 export const randomNum = (maxNum) => Math.floor(Math.random() * maxNum);
 
 let yourName;
+
+export const questionPack = (func) => {
+  const questions = [];
+  const correctAnswers = [];
+  for (let i = 0; i < round; i += 1) {
+    const random = randomNum(35);
+    questions.push(random);
+    correctAnswers.push(func(questions[i]) ? 'yes' : 'no');
+  }
+  return _.zip(questions, correctAnswers);
+};
 
 export const greeting = (task) => {
   console.log('Welcome to the Brain Games!');
@@ -15,9 +27,9 @@ export const greeting = (task) => {
 
 let result;
 
-const oneRound = (qwest, answ) => {
-  console.log(`Question: ${qwest}`);
-  const correctAnswer = answ;
+const oneRound = (roundQuest, roundAnsw) => {
+  console.log(`Question: ${roundQuest}`);
+  const correctAnswer = roundAnsw;
   const yourAnswer = readlineSync.question('Your answer: ');
   const wrongAnswer = `'${yourAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`;
   const compare = correctAnswer === yourAnswer;

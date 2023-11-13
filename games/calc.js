@@ -19,7 +19,7 @@ const calculator = (num1, num2, oper) => {
   }
 };
 
-const calcVariants = () => {
+const calcQuestionPack = () => {
   const calcQuestion = [];
   const calcCorrectAnswer = [];
   for (let i = 0; i < round; i += 1) {
@@ -34,7 +34,7 @@ const calcVariants = () => {
   return _.zip(calcQuestion, calcCorrectAnswer);
 };
 
-const calcQAPair = calcVariants();
+const calcQAPair = calcQuestionPack();
 
 export default () => {
   game(calcTask, calcQAPair);

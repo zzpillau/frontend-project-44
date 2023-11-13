@@ -1,6 +1,5 @@
-import _ from 'lodash';
 import {
-  round, maxRandomNum, randomNum, game,
+  questionPack, game,
 } from '../src/index.js';
 
 const primeTask = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -17,17 +16,7 @@ const isPrime = (num) => {
   return true;
 };
 
-const primeVariants = () => {
-  const primeQuestion = [];
-  const primeCorrectAnswer = [];
-  for (let i = 0; i < round; i += 1) {
-    primeQuestion.push(randomNum(maxRandomNum));
-    primeCorrectAnswer.push(isPrime(primeQuestion[i]) ? 'yes' : 'no');
-  }
-  return _.zip(primeQuestion, primeCorrectAnswer);
-};
-
-const primeQAPair = primeVariants();
+const primeQAPair = questionPack(isPrime);
 
 export default () => {
   game(primeTask, primeQAPair);

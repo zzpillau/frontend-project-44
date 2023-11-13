@@ -25,7 +25,7 @@ const progress = () => {
   return myProg.join(' ');
 };
 
-const progressionVariants = () => {
+const progressionQuestionPack = () => {
   const progressionQuestion = [];
   const progressionCorrectAnswer = [];
   for (let i = 0; i < round; i += 1) {
@@ -35,7 +35,7 @@ const progressionVariants = () => {
   return _.zip(progressionQuestion, progressionCorrectAnswer);
 };
 
-const progressionQAPair = progressionVariants();
+const progressionQAPair = progressionQuestionPack();
 
 export default () => {
   game(progressionTask, progressionQAPair);
