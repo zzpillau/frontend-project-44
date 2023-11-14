@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { cons, car, cdr } from '@hexlet/pairs';
 import {
   round, maxRandomNum, randomNum, game,
-} from '../src/index.js';
+} from '../index.js';
 
 const calcTask = 'What is the result of the expression?';
 

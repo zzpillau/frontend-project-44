@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {
   round, randomNum, game,
-} from '../src/index.js';
+} from '../index.js';
 
 const progressionTask = 'What number is missing in the progression?';
 

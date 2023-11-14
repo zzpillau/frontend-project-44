@@ -4,7 +4,7 @@ import {
 } from '@hexlet/pairs';
 import {
   round, maxRandomNum, randomNum, game,
-} from '../src/index.js';
+} from '../index.js';
 
 const gcdTask = 'Find the greatest common divisor of given numbers.';
 

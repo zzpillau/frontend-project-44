@@ -1,6 +1,6 @@
 import {
   questionPack, game,
-} from '../src/index.js';
+} from '../index.js';
 
 const evenTask = 'Answer "yes" if the number is even, otherwise answer "no".';
 
