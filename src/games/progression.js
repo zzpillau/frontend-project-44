@@ -1,42 +1,29 @@
-import _ from 'lodash';
-import {
-  round, randomNum, game,
-} from '../index.js';
+import { runGame } from '../index.js';
+import getRandomNum from '../utils.js';
+
+const runProgressionRound = () => {
+  const progression = [];
+  const progressionLength = 10;
+  let start = getRandomNum(7);
+  const step = getRandomNum(7);
+  progression.push(start);
+
+  for (let i = 0; i < progressionLength - 1; i += 1) {
+    const sum = start + step;
+    progression.push(sum);
+    start = sum;
+  }
+
+  const dotsShouldBeHere = getRandomNum(progressionLength);
+  const progressionAnswer = progression[dotsShouldBeHere].toString();
+  progression[dotsShouldBeHere] = '..';
+  const progressionQuestion = progression.join(' ');
+
+  return [progressionQuestion, progressionAnswer];
+};
 
 const progressionTask = 'What number is missing in the progression?';
 
-let item;
-
-const progress = () => {
-  const progLength = 10;
-  const arr = [];
-  let start = randomNum(7);
-  const add = randomNum(7);
-  arr.push(start);
-  for (let i = 0; i < progLength - 1; i += 1) {
-    const sum = start + add;
-    arr.push(sum);
-    start = sum;
-  }
-  const myProg = arr;
-  const index = randomNum(myProg.length);
-  item = myProg[index];
-  myProg[index] = '..';
-  return myProg.join(' ');
-};
-
-const progressionQuestionPack = () => {
-  const progressionQuestion = [];
-  const progressionCorrectAnswer = [];
-  for (let i = 0; i < round; i += 1) {
-    progressionQuestion.push(progress());
-    progressionCorrectAnswer.push(item.toString());
-  }
-  return _.zip(progressionQuestion, progressionCorrectAnswer);
-};
-
-const progressionQAPair = progressionQuestionPack();
-
 export default () => {
-  game(progressionTask, progressionQAPair);
+  runGame(progressionTask, runProgressionRound);
 };

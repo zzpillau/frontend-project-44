@@ -1,14 +1,8 @@
-import _ from 'lodash';
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
-import {
-  round, maxRandomNum, randomNum, game,
-} from '../index.js';
+import { cons, car, cdr } from '@hexlet/pairs';
+import { maxRandomNum, runGame } from '../index.js';
+import getRandomNum from '../utils.js';
 
-const gcdTask = 'Find the greatest common divisor of given numbers.';
-
-const gcd = (a, b) => {
+const getGCD = (a, b) => {
   let i = a;
   let j = b;
   while (i > 0 && j > 0) {
@@ -21,21 +15,15 @@ const gcd = (a, b) => {
   return Math.max(i, j);
 };
 
-const gcdQuestionPack = () => {
-  const gcdQuestion = [];
-  const gcdCorrectAnswer = [];
-  for (let i = 0; i < round; i += 1) {
-    const pair = cons(randomNum(maxRandomNum), randomNum(maxRandomNum));
-    const gcdAnsw = gcd(car(pair), cdr(pair));
-    const gcdQuest = `${car(pair)} ${cdr(pair)}`;
-    gcdQuestion.push(gcdQuest);
-    gcdCorrectAnswer.push(gcdAnsw.toString());
-  }
-  return _.zip(gcdQuestion, gcdCorrectAnswer);
+const runGcdRound = () => {
+  const pairOfNumbers = cons(getRandomNum(maxRandomNum), getRandomNum(maxRandomNum));
+  const gcdQuestion = `${car(pairOfNumbers)} ${cdr(pairOfNumbers)}`;
+  const gcdAnswer = getGCD(car(pairOfNumbers), cdr(pairOfNumbers));
+  return [gcdQuestion, gcdAnswer.toString()];
 };
 
-const gcdQAPair = gcdQuestionPack();
+const gcdTask = 'Find the greatest common divisor of given numbers.';
 
 export default () => {
-  game(gcdTask, gcdQAPair);
+  runGame(gcdTask, runGcdRound);
 };

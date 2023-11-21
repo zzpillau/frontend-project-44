@@ -1,8 +1,5 @@
-import {
-  questionPack, game,
-} from '../index.js';
-
-const primeTask = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+import { maxRandomNum, runGame } from '../index.js';
+import getRandomNum from '../utils.js';
 
 const isPrime = (num) => {
   if (num <= 1) {
@@ -16,8 +13,14 @@ const isPrime = (num) => {
   return true;
 };
 
-const primeQAPair = questionPack(isPrime);
+const runPrimeRound = () => {
+  const primeQuestion = getRandomNum(maxRandomNum);
+  const primeAnswer = isPrime(primeQuestion) ? 'yes' : 'no';
+  return [primeQuestion, primeAnswer];
+};
+
+const primeTask = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 export default () => {
-  game(primeTask, primeQAPair);
+  runGame(primeTask, runPrimeRound);
 };
