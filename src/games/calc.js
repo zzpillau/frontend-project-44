@@ -1,5 +1,5 @@
 import { cons, car, cdr } from '@hexlet/pairs';
-import { maxRandomNum, runGame } from '../index.js';
+import runGame from '../index.js';
 import getRandomNum from '../utils.js';
 
 const calculate = (num1, num2, operator) => {
@@ -11,21 +11,22 @@ const calculate = (num1, num2, operator) => {
     case '*':
       return num1 * num2;
     default:
-      return null;
+      throw new Error(`Unknown operator: '${operator}'!`);
   }
 };
 
 const runCalcRound = () => {
   const operators = ['+', '-', '*'];
-  const operator = operators[getRandomNum(operators.length)];
-  const pairOfNumbers = cons(getRandomNum(maxRandomNum), getRandomNum(maxRandomNum));
-  const calcQuestion = `${car(pairOfNumbers)} ${operator} ${cdr(pairOfNumbers)}`;
-  const calcAnswer = calculate(car(pairOfNumbers), cdr(pairOfNumbers), operator);
-  return [calcQuestion, calcAnswer.toString()];
+  const lastOperator = operators.length - 1;
+  const currentOperator = operators[getRandomNum(0, lastOperator)];
+  const pairOfNumbers = cons(getRandomNum(), getRandomNum());
+  const question = `${car(pairOfNumbers)} ${currentOperator} ${cdr(pairOfNumbers)}`;
+  const answer = calculate(car(pairOfNumbers), cdr(pairOfNumbers), currentOperator);
+  return [question, answer.toString()];
 };
 
-const calcTask = 'What is the result of the expression?';
+const task = 'What is the result of the expression?';
 
 export default () => {
-  runGame(calcTask, runCalcRound);
+  runGame(task, runCalcRound);
 };

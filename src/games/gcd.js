@@ -1,29 +1,29 @@
 import { cons, car, cdr } from '@hexlet/pairs';
-import { maxRandomNum, runGame } from '../index.js';
+import runGame from '../index.js';
 import getRandomNum from '../utils.js';
 
-const getGCD = (a, b) => {
-  let i = a;
-  let j = b;
-  while (i > 0 && j > 0) {
-    if (i >= j) {
-      i %= j;
+const getDivisor = (a, b) => {
+  let num1 = a;
+  let num2 = b;
+  while (num1 > 0 && num2 > 0) {
+    if (num1 >= num2) {
+      num1 %= num2;
     } else {
-      j %= i;
+      num2 %= num1;
     }
   }
-  return Math.max(i, j);
+  return Math.max(num1, num2);
 };
 
 const runGcdRound = () => {
-  const pairOfNumbers = cons(getRandomNum(maxRandomNum), getRandomNum(maxRandomNum));
-  const gcdQuestion = `${car(pairOfNumbers)} ${cdr(pairOfNumbers)}`;
-  const gcdAnswer = getGCD(car(pairOfNumbers), cdr(pairOfNumbers));
-  return [gcdQuestion, gcdAnswer.toString()];
+  const pairOfNumbers = cons(getRandomNum(), getRandomNum());
+  const question = `${car(pairOfNumbers)} ${cdr(pairOfNumbers)}`;
+  const answer = getDivisor(car(pairOfNumbers), cdr(pairOfNumbers));
+  return [question, answer.toString()];
 };
 
-const gcdTask = 'Find the greatest common divisor of given numbers.';
+const task = 'Find the greatest common divisor of given numbers.';
 
 export default () => {
-  runGame(gcdTask, runGcdRound);
+  runGame(task, runGcdRound);
 };

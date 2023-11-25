@@ -1,29 +1,35 @@
-import { runGame } from '../index.js';
+import runGame from '../index.js';
 import getRandomNum from '../utils.js';
 
-const runProgressionRound = () => {
-  const progression = [];
-  const progressionLength = 10;
-  let start = getRandomNum(7);
-  const step = getRandomNum(7);
-  progression.push(start);
+const buildProgression = () => {
+  const result = [];
+  let start = getRandomNum(2, 9);
+  result.push(start);
 
-  for (let i = 0; i < progressionLength - 1; i += 1) {
+  const step = getRandomNum(2, 9);
+  const progLength = 10;
+
+  for (let progElement = 2; progElement <= progLength; progElement += 1) {
     const sum = start + step;
-    progression.push(sum);
+    result.push(sum);
     start = sum;
   }
-
-  const dotsShouldBeHere = getRandomNum(progressionLength);
-  const progressionAnswer = progression[dotsShouldBeHere].toString();
-  progression[dotsShouldBeHere] = '..';
-  const progressionQuestion = progression.join(' ');
-
-  return [progressionQuestion, progressionAnswer];
+  return result;
 };
 
-const progressionTask = 'What number is missing in the progression?';
+const runProgressionRound = () => {
+  const progression = buildProgression();
+  const lastDotsPosition = progression.length - 1;
+  const dotsShouldBeHere = getRandomNum(0, lastDotsPosition);
+  const answer = progression[dotsShouldBeHere].toString();
+  progression[dotsShouldBeHere] = '..';
+  const question = progression.join(' ');
+
+  return [question, answer];
+};
+
+const task = 'What number is missing in the progression?';
 
 export default () => {
-  runGame(progressionTask, runProgressionRound);
+  runGame(task, runProgressionRound);
 };
